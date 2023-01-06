@@ -1,0 +1,2 @@
+;;; Generated package description from exunit.el  -*- no-byte-compile: t -*-
+(define-package "exunit" "20221019.1320" "ExUnit test runner" '((s "1.11.0") (emacs "24.3") (f "0.20.0") (transient "0.3.6")) :commit "e0a8c2b81f3d53885ed753b911b3cb6ee9229bec" :authors '(("Anantha kumaran" . "ananthakumaran@gmail.com")) :maintainer '("Anantha kumaran" . "ananthakumaran@gmail.com") :keywords '("processes" "elixir" "exunit") :url "http://github.com/ananthakumaran/exunit.el")

@@ -1,0 +1,1 @@
+((matrix-client :fetcher github :repo "alphapapa/matrix-client.el" :files (:defaults "logo.png" "matrix-client-standalone.el.sh")) (quelpa :repo "quelpa/quelpa" :fetcher github) (quelpa-use-package :fetcher git :url "https://github.com/quelpa/quelpa-use-package.git"))

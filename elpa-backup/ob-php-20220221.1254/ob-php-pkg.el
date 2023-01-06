@@ -1,0 +1,2 @@
+;;; Generated package description from ob-php.el  -*- no-byte-compile: t -*-
+(define-package "ob-php" "20220221.1254" "Execute PHP within org-mode source blocks." '((org "8")) :commit "6ebf7799e9ded1d5114094f46785960a50000614" :authors '(("stardiviner" . "numbchild@gmail.com")) :maintainer '("stardiviner" . "numbchild@gmail.com") :keywords '("org" "babel" "php") :url "https://repo.or.cz/ob-php.git")

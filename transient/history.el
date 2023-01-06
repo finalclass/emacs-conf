@@ -5,12 +5,24 @@
  (magit-diff
   ("--no-ext-diff" "--stat"))
  (magit-dispatch nil)
- (magit-fetch nil)
+ (magit-fetch nil
+	      ("--tags"))
+ (magit-gitignore nil)
+ (magit-log
+  ("-n256" "--graph" "--decorate"))
  (magit-merge nil)
- (magit-pull nil)
+ (magit-pull
+  ("--rebase")
+  nil)
  (magit-push nil
-             ("--force"))
+	     ("--force")
+	     ("--force-with-lease"))
  (magit-rebase nil)
  (magit-revert
   ("--edit"))
- (magit-tag nil))
+ (magit-stash nil)
+ (magit-tag
+  ("--force")
+  nil
+  ("--annotate"))
+ (magit-worktree nil))

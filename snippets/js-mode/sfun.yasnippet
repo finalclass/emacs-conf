@@ -1,0 +1,10 @@
+# -*- mode: snippet -*-
+# name: sfun
+# key: sfun
+# --
+export async function $1(ctx: root.Ctx, $2) {
+    const logger = ctx.log.child({ $3 });
+    logger.debug('started');
+    $0
+    logger.debug('success');
+}

@@ -1,0 +1,5 @@
+(use-package rust-mode
+  :ensure t
+  :init
+  (autoload 'rust-mode "rust-mode" nil t)
+  (add-to-list 'auto-mode-alist '("\\.rs\\'" . rust-mode)))

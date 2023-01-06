@@ -1,0 +1,5 @@
+(use-package erlang :ensure t)
+(use-package f :ensure t)
+(use-package s :ensure t)
+(use-package popup :ensure t)
+(use-package eproject :ensure t)

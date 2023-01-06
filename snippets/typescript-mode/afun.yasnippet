@@ -1,0 +1,11 @@
+# -*- mode: snippet -*-
+# name: async msg function
+# key: afun
+# --
+async function $1($2): Promise<Msg> {
+    try {
+        $0
+    } catch (err) {
+        console.error('$1 failed', err);
+    }
+}

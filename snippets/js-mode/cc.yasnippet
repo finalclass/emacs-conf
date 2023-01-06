@@ -1,0 +1,9 @@
+# -*- mode: snippet -*-
+# name: catch backend statement
+# key: cc
+# --
+.catch((err: Error) => {
+    logger.error(err, '$1 failed');
+    throw new Error('internalServerError');
+});
+$0
