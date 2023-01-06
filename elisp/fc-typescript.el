@@ -26,17 +26,17 @@
 ;; eglot alternative (for deno?) ;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-(add-to-list 'eglot-server-programs '((js-mode typescript-mode) . (eglot-deno "deno" "lsp")))
+;;(add-to-list 'eglot-server-programs '((js-mode typescript-mode) . (eglot-deno "deno" "lsp")))
 
-(defclass eglot-deno (eglot-lsp-server) ()
-  :documentation "A custom class for deno lsp.")
+;;(defclass eglot-deno (eglot-lsp-server) ()
+;;  :documentation "A custom class for deno lsp.")
 
-(cl-defmethod eglot-initialization-options ((server eglot-deno))
-  "Passes through required deno initialization options"
-  (list :enable t
-	:lint t))
+;;(cl-defmethod eglot-initialization-options ((server eglot-deno))
+;;  "Passes through required deno initialization options"
+;;  (list :enable t
+;;	:lint t))
 
-(use-package deno-fmt
-  :ensure t
-  :config
-  (add-hook 'eglot--managed-mode 'deno-fmt-mode))
+;;(use-package deno-fmt
+;;  :ensure t
+;;  :config
+;;  (add-hook 'typescript-mode 'deno-fmt-mode))

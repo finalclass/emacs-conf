@@ -22,4 +22,9 @@
   :ensure t
   :hook (company-mode . company-box-mode))
 
-(use-package eglot :ensure t)
+;; (use-package eglot :ensure t)
+
+(use-package copilot
+  :straight (:host github :repo "zerolfx/copilot.el" :files ("dist" "*.el"))
+  :ensure t)
+(add-hook 'prog-mode-hook 'copilot-mode)

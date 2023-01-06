@@ -4,7 +4,7 @@
 (load-library "fc-static-packages")
 (load-library "fc-gui")
 (load-library "fc-org")
-(load-library "fc-ido-mode")
+(load-library "fc-findfile")
 (load-library "fc-text")
 (load-library "fc-navigate")
 (load-library "fc-git")
