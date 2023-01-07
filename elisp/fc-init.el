@@ -16,6 +16,7 @@
 (load-library "fc-autocompletion")
 (load-library "fc-help")
 (load-library "fc-elmacro")
+(load-library "fc-flycheck")
 
 (load-library "fc-elixir")
 (load-library "fc-erlang")
