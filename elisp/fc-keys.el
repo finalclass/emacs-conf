@@ -55,6 +55,9 @@
 (global-set-key (kbd "M-m m m") 'kmacro-start-macro-or-insert-counter)
 (global-set-key (kbd "M-m m e") 'kmacro-end-or-call-macro)
 (global-set-key (kbd "M-m m s") 'kmacro-bind-to-key)
+(global-set-key (kbd "M-m j") 'fc-remove-whitespace)
+(global-set-key (kbd "M-m g l") 'fc-kill-gitea-address)
+
 
 (define-key dired-mode-map [C-up] ()) ; previously was set to 'diredp-visit-previous-file
 (define-key dired-mode-map [C-down] ()) ; previously was set to 'diredp-visit-next-file

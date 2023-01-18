@@ -88,3 +88,38 @@ When `universal-argument' is called first, cut whole buffer (but respect `narrow
      ((= char (downcase char))
       (delete-char 1)
       (insert (upcase char))))))
+
+
+(defun fc-remove-whitespace ()
+  "removes whitespace (including newlines) from the end of current line
+till the first non-whitespace character"
+  (interactive)
+  (delete-region
+   (fc-last-non-white-char-position-in-line)
+   (fc-next-non-white-char-position
+    (+ 1 (fc-last-non-white-char-position-in-line))
+    )
+   )
+  )
+
+(defun fc-point ()
+  (interactive)
+  (message (number-to-string (point))))
+
+(defun fc-next-non-white-char-position (starting-point)
+  "returns the position of the next non-whitespace character"
+  (interactive)
+  (save-excursion
+    (goto-char starting-point)
+    (skip-chars-forward " \t\s\n")
+    (point)))
+
+(defun fc-last-non-white-char-position-in-line ()
+  "returns the position of the last non-whitespace character in the current line"
+  (interactive)
+  (save-excursion
+    (end-of-line)
+    (skip-chars-backward "\\s-")
+    (point)))
+
+(global-set-key (kbd "M-m j") 'fc-remove-whitespace)
