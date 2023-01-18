@@ -4,4 +4,4 @@
 (setq scroll-step 1) ;; keyboard scroll one line at a time
 (setq show-trailing-whitespace t)
 (custom-set-faces '(trailing-whitespace ((t (:foreground "#333333")))))
-
+(setq mc/always-run-for-all t)

@@ -76,3 +76,15 @@ When `universal-argument' is called first, cut whole buffer (but respect `narrow
 
 (use-package expand-region
   :ensure t)
+
+(defun fc-toggle-case ()
+  "Toggle the case of the character at the point."
+  (interactive)
+  (let ((char (following-char)))
+    (cond
+     ((= char (upcase char))
+      (delete-char 1)
+      (insert (downcase char)))
+     ((= char (downcase char))
+      (delete-char 1)
+      (insert (upcase char))))))

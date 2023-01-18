@@ -33,5 +33,17 @@
   ;; disable inline previews
   (delq 'company-preview-if-just-one-frontend company-frontends))
 
-(define-key copilot-completion-map (kbd "<tab>") 'copilot-accept-completion)
-(define-key copilot-completion-map (kbd "TAB") 'copilot-accept-completion)
+(use-package eglot
+  :ensure t
+  :config
+  (add-hook 'eglot-managed-mode-hook 'company-mode))
+
+(add-to-list 'eglot-server-programs '((js-mode typescript-mode) . (eglot-deno "deno" "lsp")))
+
+(defclass eglot-deno (eglot-lsp-server) ()
+  :documentation "A custom class for deno lsp.")
+
+(cl-defmethod eglot-initialization-options ((server eglot-deno))
+  "Passes through required deno initialization options"
+  (list :enable t
+        :lint t))

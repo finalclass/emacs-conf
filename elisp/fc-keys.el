@@ -23,10 +23,11 @@
 (global-set-key (kbd "M-m s <left>") 'doremi-window-width+)
 (global-set-key (kbd "M-m s <up>") 'doremi-window-height+)
 (global-set-key (kbd "M-m s <down>") 'doremi-window-height+)
-(global-set-key (kbd "C-d") 'mc/mark-next-like-this)
-(global-set-key (kbd "C-c d") 'mc/mark-all-like-this)
-(global-set-key (kbd "S-C-d") 'mc/mark-previous-like-this)
-(global-set-key (kbd "C-=") 'er/expand-region)
+(global-set-key (kbd "C-p") 'mc/mark-next-like-this)
+(global-set-key (kbd "S-C-p") 'mc/mark-previous-like-this)
+(global-set-key (kbd "C-c p") 'mc/mark-all-like-this)
+(define-key mc/keymap (kbd "<return>") nil)
+(global-set-key (kbd "C-f") 'er/expand-region)
 (global-set-key (kbd "M-m e n") 'next-error)
 (global-set-key (kbd "M-m e p") 'previous-error)
 (global-set-key (kbd "C-b") 'yas-expand)
@@ -50,6 +51,10 @@
 (global-set-key (kbd "M-m f f") 'counsel-locate)
 (global-set-key (kbd "M-m s g") 'counsel-git-grep)
 (global-set-key (kbd "M-y") 'counsel-yank-pop)
+(global-set-key (kbd "M-m c") 'fc-toggle-case)
+(global-set-key (kbd "M-m m m") 'kmacro-start-macro-or-insert-counter)
+(global-set-key (kbd "M-m m e") 'kmacro-end-or-call-macro)
+(global-set-key (kbd "M-m m s") 'kmacro-bind-to-key)
 
 (define-key dired-mode-map [C-up] ()) ; previously was set to 'diredp-visit-previous-file
 (define-key dired-mode-map [C-down] ()) ; previously was set to 'diredp-visit-next-file
@@ -59,6 +64,7 @@
 (define-key yafolding-mode-map (kbd "<C-M-return>") nil)
 (define-key yafolding-mode-map (kbd "<C-return>") nil)
 (define-key yafolding-mode-map (kbd "C--") 'yafolding-toggle-element)
+(define-key yafolding-mode-map (kbd "C-_") 'yafolding-toggle-all)
 
 (define-key elixir-mode-map (kbd "M-m f") 'elixir-format)
 
@@ -66,3 +72,6 @@
 
 (define-key projectile-mode-map (kbd "M-m p") 'projectile-command-map)
 (define-key read-expression-map (kbd "C-r") 'counsel-expression-history)
+
+(define-key copilot-completion-map (kbd "<tab>") 'copilot-accept-completion)
+(define-key copilot-completion-map (kbd "TAB") 'copilot-accept-completion)

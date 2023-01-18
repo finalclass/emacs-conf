@@ -1,12 +1,13 @@
 (use-package typescript-mode
   :ensure t
   :mode "\\.ts\\'"
-  :config
-  (add-hook 'typescript-mode-hook #'tide-setup))
+  :config)
+  ;; (add-hook 'typescript-mode-hook #'tide-setup))
 
 (use-package deno-fmt
-  :ensure t)
-  
+  :ensure t
+  :config
+  (add-hook 'eglot-managed-mode-hook #'deno-fmt-mode))
 
 (defun setup-tide-mode ()
   (interactive)
@@ -26,7 +27,9 @@
   (setq company-tooltip-align-annotations t)
   (setq company-tooltip-align-annotations t)
   (add-hook 'before-save-hook 'tide-format-before-save)
-  (add-hook 'typescript-mode-hook #'setup-tide-mode))
+  ; start it manually instead
+  ;; (add-hook 'typescript-mode-hook #'setup-tide-mode)
+  )
 
 (add-to-list 'auto-mode-alist '("\\.tsx\\'" . web-mode))
 (add-hook 'web-mode-hook
