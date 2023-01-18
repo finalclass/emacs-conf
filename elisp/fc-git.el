@@ -13,14 +13,14 @@
     (fc-get-git-preview-file-path)))
 
 (defun fc-get-git-preview-file-path ()
-  (substring (first (string-split (buffer-name) "~")) 0 -1))
+  (substring (first (split-string (buffer-name) "~")) 0 -1))
 
 (defun fc-get-regular-file-path ()
   (let (
 	(root-dir (project-root (project-current)))
 	(abs-path (file-truename (buffer-file-name)))
 	)
-    (file-relative-name abs-path root-dir))))
+    (file-relative-name abs-path root-dir)))
 
 (defun fc-line-or-selected-lines ()
   (if (region-active-p)
@@ -39,10 +39,11 @@
 (defun fc-get-project-name()
   (first
    (split-string
-    (car (last
-     (split-string
-      (shell-command-to-string "git config --get remote.origin.url")
-      "/")) )
+    (car
+     (last
+      (split-string
+       (shell-command-to-string "git config --get remote.origin.url")
+       "/")))
     "\\.")))
 
 (defun fc-get-current-git-commit ()
