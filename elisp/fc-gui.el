@@ -9,8 +9,8 @@
 ;; (load-theme 'zenburn t)
 
 (tool-bar-mode -1)
-(set-frame-font "Inconsolata-22")
-(add-to-list 'default-frame-alist '(font . "Inconsolata-22"))
+(set-frame-font "Inconsolata-20")
+(add-to-list 'default-frame-alist '(font . "Inconsolata-20"))
 (fset 'yes-or-no-p 'y-or-n-p)
 (setq visible-bell nil)
 (show-paren-mode t)
@@ -35,3 +35,5 @@
 					; linu numbers
 (global-display-line-numbers-mode 1)
 (setq display-line-numbers-type 'relative)
+(line-number-mode t)
+(column-number-mode t)

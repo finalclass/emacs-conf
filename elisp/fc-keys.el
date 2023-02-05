@@ -57,7 +57,13 @@
 (global-set-key (kbd "M-m m s") 'kmacro-bind-to-key)
 (global-set-key (kbd "M-m j") 'fc-remove-whitespace)
 (global-set-key (kbd "M-m g l") 'fc-kill-gitea-address)
-
+(global-set-key (kbd "M-.") 'lsp-bridge-find-def)
+(global-set-key (kbd "M-,") 'lsp-bridge-find-def-return)
+(global-set-key (kbd "M-m l n") 'lsp-bridge-diagnostic-jump-next)
+(global-set-key (kbd "M-m l p") 'lsp-bridge-diagnostic-jump-prev)
+(global-set-key (kbd "M-m l r") 'lsp-bridge-rename)
+(global-set-key (kbd "M-m l a") 'lsp-bridge-code-action)
+(global-set-key (kbd "M-m l k") 'lsp-bridge-restart-process)
 
 (define-key dired-mode-map [C-up] ()) ; previously was set to 'diredp-visit-previous-file
 (define-key dired-mode-map [C-down] ()) ; previously was set to 'diredp-visit-next-file
