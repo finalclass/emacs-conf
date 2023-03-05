@@ -23,9 +23,18 @@
   
   (add-hook 'web-mode-hook  'my-web-mode-hook))
 
+(defun initialize-emmet-only-for-tsx-files ()
+  (when (string= "tsx" (file-name-extension buffer-file-name))
+    (emmet-mode)))
+
 (use-package emmet-mode
   :ensure t
   :config
-  (add-hook 'web-mode-hook '(lambda () (emmet-mode))))
+  (add-hook 'web-mode-hook '(lambda () (emmet-mode)))
+  ;; initialize emmet-mode only for tsx files:
+  (add-hook 'typescript-mode-hook 'initialize-emmet-only-for-tsx-files)
+  )
+
+
 
 (add-hook 'css-mode-hook 'company-mode)

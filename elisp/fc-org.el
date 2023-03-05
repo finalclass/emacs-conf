@@ -47,3 +47,6 @@
 
 (use-package epresent
   :ensure t)
+
+(use-package org-kanban
+  :ensure t)

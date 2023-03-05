@@ -5,6 +5,7 @@
 (load-library "fc-gui")
 (load-library "fc-org")
 (load-library "fc-text")
+(load-library "fc-mark-inner")
 (load-library "fc-navigate")
 (load-library "fc-git")
 (load-library "fc-snippets")

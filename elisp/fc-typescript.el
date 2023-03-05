@@ -33,6 +33,10 @@
       (lambda (project-path filepath)
 	(if (and (deno-project-p)
                  (or
+                  (and 
+                   (string-equal (file-name-extension filepath) "tsx")
+                   (not (string-match-p "digitall/front" filepath))
+                   )
 		  (string-equal (file-name-extension filepath) "ts")
                   (string-equal (file-name-extension filepath) "js")
                   )

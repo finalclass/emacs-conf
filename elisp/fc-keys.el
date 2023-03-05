@@ -64,6 +64,10 @@
 (global-set-key (kbd "M-m l r") 'lsp-bridge-rename)
 (global-set-key (kbd "M-m l a") 'lsp-bridge-code-action)
 (global-set-key (kbd "M-m l k") 'lsp-bridge-restart-process)
+(global-set-key (kbd "M-m i") 'mark-inner)
+(global-set-key (kbd "M-m t l") 'toggle-truncate-lines)
+(global-set-key (kbd "M-m o s") 'org-kanban/shift)
+(global-set-key (kbd "M-m o l") 'org-open-at-point)
 
 (define-key dired-mode-map [C-up] ()) ; previously was set to 'diredp-visit-previous-file
 (define-key dired-mode-map [C-down] ()) ; previously was set to 'diredp-visit-next-file
