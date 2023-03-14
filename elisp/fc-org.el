@@ -50,3 +50,6 @@
 
 (use-package org-kanban
   :ensure t)
+
+(use-package orgtbl-aggregate
+  :ensure t)

@@ -68,6 +68,10 @@
 (global-set-key (kbd "M-m t l") 'toggle-truncate-lines)
 (global-set-key (kbd "M-m o s") 'org-kanban/shift)
 (global-set-key (kbd "M-m o l") 'org-open-at-point)
+(global-set-key (kbd "S-M-<down>") 'duplicate-line-down)
+(global-set-key (kbd "S-M-<up>") 'duplicate-line-up)
+(global-set-key (kbd "S-C-<down>") 'move-line-down)
+(global-set-key (kbd "S-C-<up>") 'move-line-up)
 
 (define-key dired-mode-map [C-up] ()) ; previously was set to 'diredp-visit-previous-file
 (define-key dired-mode-map [C-down] ()) ; previously was set to 'diredp-visit-next-file

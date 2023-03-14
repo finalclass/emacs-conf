@@ -5,6 +5,7 @@
 (load-library "fc-gui")
 (load-library "fc-org")
 (load-library "fc-text")
+(load-library "fc-treesitter");
 (load-library "fc-mark-inner")
 (load-library "fc-navigate")
 (load-library "fc-git")
@@ -33,6 +34,7 @@
 (load-library "fc-elisp")
 (load-library "fc-dart")
 (load-library "fc-elm")
+(load-library "fc-gleam")
 
 (load-library "fc-keys")
 (load-library "fc-settings")

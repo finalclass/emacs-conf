@@ -121,3 +121,38 @@ till the first non-whitespace character"
     (end-of-line)
     (skip-chars-backward "\\s-")
     (point)))
+
+(defun duplicate-line-down ()
+  "Duplicate the current line and place it below the current line."
+  (interactive)
+  (save-excursion
+    (beginning-of-line)
+    (copy-region-as-kill (line-beginning-position) (line-end-position))
+    (forward-line -1)
+    (end-of-line)
+    (newline)
+    (yank)))
+
+(defun duplicate-line-up ()
+  "Duplicate the current line and place it above the current line."
+  (interactive)
+  (save-excursion 
+    (beginning-of-line)
+    (copy-region-as-kill (line-beginning-position) (line-end-position))
+    (end-of-line)
+    (newline)
+    (yank)
+    ))
+
+(defun move-line-up ()
+  "Move the current line up one line."
+  (interactive)
+  (transpose-lines 1)
+  (forward-line -2))
+
+(defun move-line-down ()
+  "Move the current line down one line."
+  (interactive)
+  (forward-line 1)
+  (transpose-lines 1)
+  (forward-line -1))
