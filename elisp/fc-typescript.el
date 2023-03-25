@@ -36,6 +36,7 @@
                   (and 
                    (string-equal (file-name-extension filepath) "tsx")
                    (not (string-match-p "digitall/front" filepath))
+                   (not (string-match-p "pliker.net/front" filepath))
                    )
 		  (string-equal (file-name-extension filepath) "ts")
                   (string-equal (file-name-extension filepath) "js")

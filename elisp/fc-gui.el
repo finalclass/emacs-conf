@@ -34,6 +34,6 @@
 
 					; linu numbers
 (global-display-line-numbers-mode 1)
-(setq display-line-numbers-type 'relative)
+;; (setq display-line-numbers-type 'relative)
 (line-number-mode t)
 (column-number-mode t)

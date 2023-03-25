@@ -35,6 +35,7 @@
 (load-library "fc-dart")
 (load-library "fc-elm")
 (load-library "fc-gleam")
+(load-library "fc-json")
 
 (load-library "fc-keys")
 (load-library "fc-settings")
