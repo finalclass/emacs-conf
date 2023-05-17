@@ -9,8 +9,8 @@
 ;; (load-theme 'zenburn t)
 
 (tool-bar-mode -1)
-(set-frame-font "Inconsolata-20")
-(add-to-list 'default-frame-alist '(font . "Inconsolata-20"))
+(set-frame-font "Inconsolata-19")
+(add-to-list 'default-frame-alist '(font . "Inconsolata-19"))
 (fset 'yes-or-no-p 'y-or-n-p)
 (setq visible-bell nil)
 (show-paren-mode t)

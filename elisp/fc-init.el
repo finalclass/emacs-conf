@@ -36,6 +36,7 @@
 (load-library "fc-elm")
 (load-library "fc-gleam")
 (load-library "fc-json")
+(load-library "fc-csharp")
 
 (load-library "fc-keys")
 (load-library "fc-settings")

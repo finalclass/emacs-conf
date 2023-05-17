@@ -1,7 +1,21 @@
 (use-package typescript-mode
+  :config)
+
+(use-package typescript-mode
   :ensure t
   :mode "\\.ts\\'"
-  :config)
+  :after tree-sitter
+  :config
+  ;; we choose this instead of tsx-mode so that eglot can automatically figure out language for server
+  ;; see https://github.com/joaotavora/eglot/issues/624 and https://github.com/joaotavora/eglot#handling-quirky-servers
+  (define-derived-mode tsx-mode typescript-mode
+    "TypeScript TSX")
+
+  (add-to-list 'auto-mode-alist '("\\.tsx\\'" . tsx-mode))
+
+  ;; by default, typescript-mode is mapped to the treesitter typescript parser
+  ;; use our derived mode to map both .tsx AND .ts -> tsx-mode -> treesitter tsx
+  (add-to-list 'tree-sitter-major-mode-language-alist '(tsx-mode . tsx)))
 
 (defun deno-project-p ()
   (let ((root (projectile-project-root)))
@@ -27,23 +41,23 @@
     (require 'acm-terminal)))
 
 
-(print lsp-bridge-single-lang-server-mode-list)
+;;(print lsp-bridge-single-lang-server-mode-list)
 
-(setq lsp-bridge-get-single-lang-server-by-project
-      (lambda (project-path filepath)
-	(if (and (deno-project-p)
-                 (or
-                  (and 
-                   (string-equal (file-name-extension filepath) "tsx")
-                   (not (string-match-p "digitall/front" filepath))
-                   (not (string-match-p "pliker.net/front" filepath))
-                   )
-		  (string-equal (file-name-extension filepath) "ts")
-                  (string-equal (file-name-extension filepath) "js")
-                  )
-		 )
-	    "deno"
-	  )))
+;;(setq lsp-bridge-get-single-lang-server-by-project
+ ;;     (lambda (project-path filepath)
+;;	(if (and (deno-project-p)
+ ;;                (or
+ ;;                 (string-equal (file-name-extension filepath) "ts")
+ ;;                 (string-equal (file-name-extension filepath) "tsx")
+;;                  )
+;;		 (not (or
+;;                       (string-match-p "front" filepath)
+;;                       (string-match-p "admin" filepath)
+;;
+;;                       )))
+
+;;	    "deno";
+;;	  )))
           
 	    
 	    ;; ;; (return "deno")))))

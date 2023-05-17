@@ -3,7 +3,7 @@
 # key: cc
 # --
 .catch((err: Error) => {
-    logger.error(err, '$1 failed');
+    this.log.error('$1 failed', err);
     throw new Error('internalServerError');
 });
 $0

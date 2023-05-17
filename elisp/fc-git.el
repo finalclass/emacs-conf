@@ -44,7 +44,7 @@
       (split-string
        (shell-command-to-string "git config --get remote.origin.url")
        "/")))
-    "\\.")))
+    "\\.git")))
 
 (defun fc-get-current-git-commit ()
   (substring (shell-command-to-string "git rev-parse HEAD") 0 -1))

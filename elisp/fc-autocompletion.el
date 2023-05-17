@@ -14,8 +14,10 @@
 ;;   :requires lsp-mode flycheck
 ;;   :commands lsp-ui-mode  )
 
-;; (use-package company
-;;   :ensure t)
+(use-package company
+  :hook
+  ((eglot--managed-mode . company-mode))
+  :ensure t)
   
 ;; (setq company-idle-delay 0)
 ;; (setq company-dabbrev-downcase nil) ; this way company in text does not downcase everything
@@ -33,12 +35,7 @@
 ;;   ;; disable inline previews
 ;;   (delq 'company-preview-if-just-one-frontend company-frontends))
 
-;; (use-package eglot
-;;   :ensure t
-;;   :config
-;;   (add-hook 'eglot-managed-mode-hook 'company-mode))
-
-;; (add-to-list 'eglot-server-programs '((js-mode typescript-mode) . (eglot-deno "deno" "lsp")))
+        ;; (add-to-list 'eglot-server-programs '((js-mode typescript-mode) . (eglot-deno "deno" "lsp")))
 
 ;; (defclass eglot-deno (eglot-lsp-server) ()
 ;;   :documentation "A custom class for deno lsp.")
@@ -50,18 +47,37 @@
 
 ;; LSP BRIDGE
 ;; https://github.com/manateelazycat/lsp-bridge
-(use-package posframe
-  :ensure t)
+;; (use-package posframe
+  ;; :ensure t)
 
-(use-package markdown-mode
-  :ensure t)
+;; (use-package markdown-mode
+  ;; :ensure t)
 
-(add-to-list 'load-path "~/.emacs.d/lsp-bridge")
+;; (add-to-list 'load-path "~/.emacs.d/lsp-bridge")
 
-(require 'lsp-bridge)
-(global-lsp-bridge-mode)
+;; (require 'lsp-bridge)
+;; (global-lsp-bridge-mode)
 
-(setq lsp-bridge-enable-diagnostics t)
-(setq lsp-bridge-enable-hover-diagnostic t)
-(setq acm-enable-tabnine nil)
+;; (setq lsp-bridge-enable-diagnostics t)
+;; (setq lsp-bridge-enable-hover-diagnostic t)
+;; (setq acm-enable-tabnine nil)
+
+(use-package eglot
+  :ensure t
+  :hook
+  ((js-mode . eglot-ensure)
+   (tsx-mode . eglot-ensure)
+   (typescript-mode . eglot-ensure))
+  :config
+  (cl-pushnew '((js-mode typescript-mode tsx-mode) . ("typescript-language-server" "--stdio"))
+              eglot-server-programs
+              :test #'equal)
+  
+  (setq eglot-sync-connect 0))
+
+
+(defun fc-eglot-restart ()
+  (interactive)
+  (eglot-shutdown (eglot-current-server))
+  (eglot-ensure))
 
