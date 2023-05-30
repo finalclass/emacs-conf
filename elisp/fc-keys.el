@@ -28,6 +28,7 @@
 (global-set-key (kbd "C-c p") 'mc/mark-all-like-this)
 (define-key mc/keymap (kbd "<return>") nil)
 (global-set-key (kbd "C-f") 'er/expand-region)
+(global-set-key (kbd "C-b") 'er/contract-region)
 (global-set-key (kbd "M-m e n") 'next-error)
 (global-set-key (kbd "M-m e p") 'previous-error)
 (global-set-key (kbd "C-b") 'yas-expand)
@@ -91,4 +92,6 @@
 (define-key read-expression-map (kbd "C-r") 'counsel-expression-history)
 
 (define-key copilot-completion-map (kbd "<tab>") 'copilot-accept-completion)
+(global-set-key (kbd "M-m x") 'copilot-complete)
+(global-set-key (kbd "M-m z") 'copilot-accept-completion)
 (define-key copilot-completion-map (kbd "TAB") 'copilot-accept-completion)

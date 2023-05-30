@@ -75,7 +75,9 @@ When `universal-argument' is called first, cut whole buffer (but respect `narrow
 (pending-delete-mode t)
 
 (use-package expand-region
-  :ensure t)
+  :ensure t
+  :config
+  (setq expand-region-fast-keys-enabled nil))
 
 (defun fc-toggle-case ()
   "Toggle the case of the character at the point."

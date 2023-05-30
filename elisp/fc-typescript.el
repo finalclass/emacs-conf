@@ -3,7 +3,7 @@
 
 (use-package typescript-mode
   :ensure t
-  :mode "\\.ts\\'"
+  ;:mode "\\.ts\\'"
   :after tree-sitter
   :config
   ;; we choose this instead of tsx-mode so that eglot can automatically figure out language for server
@@ -11,10 +11,11 @@
   (define-derived-mode tsx-mode typescript-mode
     "TypeScript TSX")
 
-  (add-to-list 'auto-mode-alist '("\\.tsx\\'" . tsx-mode))
+  ;(add-to-list 'auto-mode-alist '("\\.tsx\\'" . tsx-mode))
 
   ;; by default, typescript-mode is mapped to the treesitter typescript parser
   ;; use our derived mode to map both .tsx AND .ts -> tsx-mode -> treesitter tsx
+  (add-to-list 'tree-sitter-major-mode-language-alist '(fc-deno-mode . tsx))
   (add-to-list 'tree-sitter-major-mode-language-alist '(tsx-mode . tsx)))
 
 (defun deno-project-p ()
@@ -22,23 +23,77 @@
     (unless (null root)
       (let ((config1 (concat root "deno.jsonc"))
             (config2 (concat root "deno.json")))
-        (or (file-exists-p config1) (file-exists-p config2))))))
-
-(defun fmt-for-deno ()
-  (if (deno-project-p)
-      (deno-fmt-mode)))
+	(and
+         (not (string-match-p "front" (buffer-file-name)))
+         (not (string-match-p "admin" (buffer-file-name)))
+         (or (file-exists-p config1) (file-exists-p config2)))))))
 
 (use-package deno-fmt
   :ensure t
   :config
-  (add-hook 'javascript-mode-hook #'fmt-for-deno)
-  (add-hook 'typescript-mode-hook #'fmt-for-deno))
+  (add-hook 'javascript-mode-hook 'deno-fmt-mode)
+  (add-hook 'fc-deno-mode-hook 'deno-fmt-mode)
+  (add-hook 'tsx-mode-hook 'deno-fmt-mode)
+  (add-hook 'typescript-mode-hook 'deno-fmt-mode))
 
-; DENO
-(unless (display-graphic-p)
-  (add-to-list 'load-path "~/.emacs.d/acm-terminal")
-  (with-eval-after-load 'acm
-    (require 'acm-terminal)))
+(define-derived-mode fc-deno-mode tsx-mode "Deno Mode"
+  "Major mode for editing deno files")
+
+(defun is-js-file ()
+  (or
+   (string= (file-name-extension buffer-file-name) "ts")
+   (string= (file-name-extension buffer-file-name) "js")))
+
+(defun is-js-file ()
+  (and buffer-file-name
+       (or (string= (downcase (file-name-extension buffer-file-name)) "ts")
+           (string= (downcase (file-name-extension buffer-file-name)) "js"))))
+
+
+(defun is-jsx-file ()
+  (or
+   (string= (file-name-extension buffer-file-name) "tsx")
+   (string= (file-name-extension buffer-file-name) "jsx")))
+   
+
+(define-derived-mode fc-deno-mode tsx-mode "Deno Mode"
+  "Major mode for editing deno files")
+
+(defun setup-ts-mode ()
+  "Set up deno-mode if deno.jsonc is present in the root directory."
+  (interactive)
+  (message (concat "Setting up ts-mode for " buffer-file-name))
+  (if (deno-project-p)
+      (fc-deno-mode)
+    (if (is-jsx-file)
+	(tsx-mode)
+      (typescript-mode)))
+  (if (or (is-jsx-file) (is-js-file))
+      (eglot-ensure)
+  ()))
+
+(add-to-list 'auto-mode-alist '("\\.tsx\\'" . setup-ts-mode))
+(add-to-list 'auto-mode-alist '("\\.ts\\'" . setup-ts-mode))
+(add-to-list 'auto-mode-alist '("\\.js\\'" . setup-ts-mode))
+(add-to-list 'auto-mode-alist '("\\.jsx\\'" . setup-ts-mode))
+
+(add-hook 'after-find-file #'setup-ts-mode t)
+
+(defclass eglot-deno (eglot-lsp-server) ()
+  :documentation "A custom class for deno lsp.")
+
+ (cl-defmethod eglot-initialization-options ((server eglot-deno))
+    "Passes through required deno initialization options"
+    (list :enable t
+    :lint t))
+
+(with-eval-after-load 'eglot
+  (cl-pushnew '((js-mode typescript-mode tsx-mode) . ("typescript-language-server" "--stdio"))
+             eglot-server-programs
+              :test #'equal)
+  
+  (add-to-list 'eglot-server-programs '((fc-deno-mode) . (eglot-deno "deno" "lsp"))))
+
 
 
 ;;(print lsp-bridge-single-lang-server-mode-list)
